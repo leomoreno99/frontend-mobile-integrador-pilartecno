@@ -1,6 +1,6 @@
 import React from "react";
 import { ToastAndroid, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDeleteNotification, changeFlagCreateOrEdit, delPlace, placeById } from "../redux/appRedux";
 import { CustomButton } from "./Button";
