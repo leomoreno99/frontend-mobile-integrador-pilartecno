@@ -3,19 +3,15 @@ import {
   SafeAreaView,
   View,
   Text,
-  ImageBackground,
   ScrollView,
   Dimensions,
   Linking,
   Platform,
 } from "react-native";
-import { Icon, Image } from "react-native-elements";
+import { Image } from "react-native-elements";
 // import { getPokemon, IMG_URL } from "../../api";
 import { styles } from "./styles";
-import { getPokemonImgId } from "../../utils";
-import Collapsible from "react-native-collapsible";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { delPlace, placeById } from "../../redux/appRedux";
+import { delPlace, placeById, changeFlagCreateOrEdit } from "../../redux/appRedux";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomButton } from "../../components/Button";
 import Header from "../../components/Header";
@@ -50,6 +46,11 @@ useEffect(()=>{
 
 const handleDeleteButton = () => {
   dispatcher(delPlace(place._id))
+}
+
+const handleEditButton = async () => {
+  await dispatcher(changeFlagCreateOrEdit(1)); 
+  props.navigation.navigate("Form")
 }
 
 const linkToMap = () => {
@@ -94,7 +95,7 @@ const linkToMap = () => {
             </View>
             <View style={{display:'flex', flexDirection: 'row-reverse', width: '100%', padding: '2%' }} >
               <CustomButton onPress={()=>handleDeleteButton()} title='Borrar' nameIcon="delete" color="red" />
-              <CustomButton onPress={()=>linkToMap()} title='Editar' nameIcon="edit" />
+              <CustomButton onPress={()=>handleEditButton()} title='Editar' nameIcon="edit" />
               <CustomButton onPress={()=>linkToMap()} title='Ir a maps' nameIcon="map" color='green' />
             </View>
           </View>
